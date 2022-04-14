@@ -1,8 +1,11 @@
 output: step.0
-	cp target/debug/rustx ./step0
+	@echo "step0"
 
-step.0: src/main.rs
-	cargo build
+step.0: src/step0.rs
+	cargo build --release
+	cp target/release/step0 .
+#		cargo build
 
 clean:
-	rm -rf target/debug
+	rm -rf target/release/step*
+	rm step*
