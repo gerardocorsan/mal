@@ -1,9 +1,9 @@
 output: step.0
-	@echo "step0"
+	@echo "step0_repl"
 
-step.0: src/step0.rs
+step.0: src/step0_repl.rs
 	cargo build --release
-	cp target/release/step0 .
+	cp target/release/step0_repl .
 #		cargo build
 
 clean:

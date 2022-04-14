@@ -18,5 +18,5 @@ log = "0.4.14"
 #serde_json = "1.0.73"
 
 [[bin]]
-name = "step0"
-path = "src/step0.rs"
+name = "step0_repl"
+path = "src/step0_repl.rs"
