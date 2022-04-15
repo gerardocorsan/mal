@@ -1,15 +1,22 @@
 pub mod util;
 
-use std::io::{stdin, stdout, Write};
-
 fn read() -> String {
-    let mut input = String::new();
+    let mut rl = rustyline::Editor::<()>::new();
 
-    print!("user> ");
-    stdout().flush().unwrap();
-    stdin().read_line(&mut input).unwrap();
+    if rl.load_history(".repl-history").is_err() {
+        eprintln!("No previous history.");
+    }
 
-    return format!("{}", input.trim());
+    let readline = rl.readline("user> ");
+    match readline {
+        Ok(line) => {
+            rl.add_history_entry(&line);
+            rl.save_history(".repl-history").unwrap();
+
+            return format!("{}", line);
+        }
+        Err(_) => return "Type 'exit' to finish".to_string(),
+    }
 }
 
 fn eval(input: &str) -> String {
